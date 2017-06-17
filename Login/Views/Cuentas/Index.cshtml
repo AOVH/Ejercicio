@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Login.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Agregar Usuario", "Registo")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre Usuario
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contraseña)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contraseña)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
+        </td>
+        <td>
+           
+          @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id },new { @class = "aEliminar" })
+        </td>
+    </tr>
+}
+
+</table>
+@section scripts{
+  <script>
+    $(".aEliminar").click(function (event) {
+      if (!confirm('Esta seguro de eliminar?')) {
+        event.preventDefault();
+      }
+    });
+  
+   
+  </script>
+}
